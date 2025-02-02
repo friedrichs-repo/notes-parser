@@ -19,7 +19,6 @@ if os.path.isdir(docs_path) == False:
 def find(keyword):
     with open(path + 'dic', 'r') as f:
         dic = eval(f.read())
-    # keyword=keyword.lower()
     results = {}
     for key in dic:
         if keyword.lower() in ''.join(dic[key]).lower():
@@ -51,7 +50,6 @@ def show(*args, **kwargs):
 
 
 def add(date, keywords):
-    # keywords = [x.lower() for x in keywords]
     with open(path + 'dic', 'r') as f:
         dic = eval(f.read())
     if not date in dic:
@@ -63,7 +61,6 @@ def add(date, keywords):
 
 
 def addto(date, keywords):
-    # keywords = [x.lower() for x in keywords]
     with open(path + 'dic', 'r') as f:
         dic = eval(f.read())
     dic[date] += keywords
