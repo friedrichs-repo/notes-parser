@@ -120,7 +120,7 @@ def read(start, end):
                 (start_y < year < end_y) or
                 (year == start_y and month >= start_m and year < end_y) or
                 (year == end_y and month <= end_m and year > start_y) or
-                (start_y == end_y and start_m <= month <= end_m)
+                (year == start_y == end_y and start_m <= month <= end_m)
             )
 
             if directory_in_window:
@@ -130,13 +130,17 @@ def read(start, end):
 
                 for file_name in files:
                     if file_name[:5] == "Notes":
-                        day = file_name[14:16]
+                        day_specified = len(file_name) > 13
+                        if day_specified:
+                            day = file_name[14:16]
 
-                        file_in_window = not (
-                            (year == start_y and month == start_m and day < start_d) or
-                            (year == end_y and month == end_m and day > end_d)
-                        )
-                        if file_in_window:
+                            file_in_window = not (
+                                (year == start_y and month == start_m and day < start_d) or
+                                (year == end_y and month == end_m and day > end_d)
+                            )
+                            if file_in_window:
+                                files_to_cat.append(directory + file_name)
+                        else:
                             files_to_cat.append(directory + file_name)
 
     if len(files_to_cat) == 0:
