@@ -1,6 +1,7 @@
 import sys
 import json
 import os
+import re
 from sty import fg, Style, RgbFg, ef, rs
 import datetime
 import subprocess
@@ -130,7 +131,8 @@ def read(start, end):
 
                 for file_name in files:
                     if file_name[:5] == "Notes":
-                        day_specified = len(file_name) > 13
+                        day_pattern = r"\b\d{3}-\d{2}-\d{2}\b"
+                        day_specified = bool(re.search(day_pattern, file_name))
                         if day_specified:
                             day = file_name[14:16]
 
