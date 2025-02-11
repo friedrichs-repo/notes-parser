@@ -131,7 +131,7 @@ def read(start, end):
 
                 for file_name in files:
                     if file_name[:5] == "Notes":
-                        day_pattern = r"\b\d{3}-\d{2}-\d{2}\b"
+                        day_pattern = r"\d{3}-\d{2}-\d{2}"
                         day_specified = bool(re.search(day_pattern, file_name))
                         if day_specified:
                             day = file_name[14:16]
@@ -222,7 +222,7 @@ elif sys.argv[1] == 'remove':
     remove(sys.argv[2])
 
 elif sys.argv[1] == 'backup':
-    os.system('cp ' + d + 'dic ' + d + 'dic_bak_' +
+    os.system('cp ' + path + 'dic ' + path + 'dic_bak_' +
               str(datetime.datetime.now())[:10])
 
 elif sys.argv[1] == 'first':
